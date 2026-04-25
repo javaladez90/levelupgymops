@@ -135,3 +135,11 @@ a {
 .booking-form button:hover {
     opacity: 0.9;
 }
+
+.form-error {
+    background: #ffe5e5;
+    color: #b00020;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}

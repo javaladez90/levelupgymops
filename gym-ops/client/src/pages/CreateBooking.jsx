@@ -14,6 +14,8 @@ function CreateBooking({ addBooking }) {
         notes: "",
     });
 
+    const [errorMessage, setErrorMessage] = useState("")
+
     function handleChange(event) {
         const { name, value } = event.target;
 
@@ -26,7 +28,19 @@ function CreateBooking({ addBooking }) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        addBooking(formData);
+        setErrorMessage("");
+
+        if (new Date(formData.start) >= new Date(formData.end)) {
+            setErrorMessage("Start time must be before end time.");
+            return;
+        }
+
+        const result = addBooking(formData);
+
+        if (!result.isValid) {
+            setErrorMessage(result.message);
+            return;
+        }
 
         setFormData({
             trainerName: "",
@@ -46,6 +60,8 @@ function CreateBooking({ addBooking }) {
             <h2>Create Booking</h2>
 
             <form className="booking-form" onSubmit={handleSubmit}>
+                {errorMessage && <p className="form-error">{errorMessage}</p>}
+
                 <label>
                     Trainer Name 
                     <input 

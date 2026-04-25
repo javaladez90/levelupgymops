@@ -7,12 +7,19 @@ import CreateBooking from "./pages/CreateBooking";
 import Trainers from "./pages/Trainers";
 import Calendar from "./pages/Calendar";
 import { mockBookings } from "./data/mockBookings"
+import { validateBooking } from "./utils/bookingRules";
 import "./styles/app.css";
 
 function App() {
     const [bookings, setBookings] = useState(mockBookings);
 
     function addBooking(newBooking) {
+        const validationResult = validateBooking(newBooking, bookings);
+
+        if (!validationResult.isValid) {
+            return validationResult;
+        }
+
         setBookings((prevBookings) => [
             ...prevBookings,
             {
@@ -20,6 +27,11 @@ function App() {
                 ...newBooking,
             },
         ]);
+
+        return {
+            isValid: true,
+            message: "Booking added successfully.",
+        };
     }
 
     return (
