@@ -7,7 +7,7 @@ export async function fetchBookings() {
         throw new Error("Failed to fetch bookings.");
     }
 
-    return response.json();
+    return await response.json();
 }
 
 export async function createBooking(bookingData) {
@@ -22,7 +22,7 @@ export async function createBooking(bookingData) {
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error(data.message || "Failed to create booking.");
+        throw new Error(data.message || `Failed to create booking: ${response.status}`);
     }
 
     return data;

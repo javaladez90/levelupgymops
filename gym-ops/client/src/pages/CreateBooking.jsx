@@ -33,6 +33,7 @@ function CreateBooking({ addBooking, trainers }) {
       setErrorMessage("Start time must be before end time.");
       return;
     }
+    console.log("Submitting booking:", formData);
 
     const result = await addBooking(formData);
 
@@ -41,7 +42,7 @@ function CreateBooking({ addBooking, trainers }) {
       return;
     }
 
-    setFormData({
+  /*  setFormData({
       trainerName: "",
       bookingType: "client_session",
       title: "",
@@ -50,7 +51,7 @@ function CreateBooking({ addBooking, trainers }) {
       end: "",
       notes: "",
     });
-
+*/
     navigate("/bookings");
   }
 

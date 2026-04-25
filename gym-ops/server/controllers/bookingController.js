@@ -17,6 +17,8 @@ const {
  */
 async function createBooking(req, res) {
   try {
+    console.log("Incoming booking request:", req.body);
+
     const { trainerName, bookingType, title, clientName, start, end, notes } =
       req.body;
 
@@ -41,7 +43,6 @@ async function createBooking(req, res) {
       });
     }
 
-    // Prevent the same trainer from being double-booked
     const trainerConflict = await hasTrainerConflict(
       trainerName,
       startDate,
@@ -54,7 +55,6 @@ async function createBooking(req, res) {
       });
     }
 
-    // Check facility-wide booking limits
     const capacityValidation = await validateFacilityCapacity(
       bookingType,
       startDate,

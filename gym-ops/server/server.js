@@ -8,7 +8,15 @@ const bookingRoutes = require("./routes/bookingRoutes");
 const app = express();
 
 // Middleware
-app.use(cors());
+
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
 app.use(express.json());
 
 // Routes
