@@ -1,0 +1,6 @@
+gym-ops/.env
+gym-ops/.env.*
+gym-ops/node_modules
+gym-ops/client/node_modules
+gym-ops/dist
+gym-ops/client/dist
