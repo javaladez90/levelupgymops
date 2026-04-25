@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function CreateBooking() {
+function CreateBooking({ addBooking }) {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         trainerName: "",
         bookingType: "client_session",
@@ -23,8 +26,19 @@ function CreateBooking() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        console.log("Booking submitted:", formData);
-        alert("Booking saved locally for now. Backend connection will come later.")
+        addBooking(formData);
+
+        setFormData({
+            trainerName: "",
+            bookingType: "client_session",
+            title: "",
+            clientName: "",
+            start: "",
+            end: "",
+            notes: "",
+        });
+
+        navigate("/bookings");
     }
 
     return (
@@ -79,7 +93,7 @@ function CreateBooking() {
                 <label>
                     Start Time 
                     <input 
-                        type="datatime-local"
+                        type="datetime-local"
                         name="start"
                         value={formData.start}
                         onChange={handleChange}

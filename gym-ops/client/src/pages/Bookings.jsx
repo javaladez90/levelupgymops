@@ -1,6 +1,6 @@
-import { mockBookings } from "../data/mockBookings";
 
-function Bookings() {
+
+function Bookings({ bookings }) {
     return (
         <div>
             <h2>Bookings</h2>
@@ -18,8 +18,8 @@ function Bookings() {
                         </tr>
                     </thead>
                     <tbody>
-                        {mockBookings.map((booking) => (
-                            <tr key={Bookings.id}>
+                        {bookings.map((booking) => (
+                            <tr key={booking.id}>
                                 <td>{booking.trainerName}</td>
                                 <td>{booking.bookingType}</td>
                                 <td>{booking.title}</td>
