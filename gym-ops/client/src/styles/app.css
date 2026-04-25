@@ -143,3 +143,111 @@ a {
     border-radius: 8px;
     font-weight: bold;
 }
+
+.calendar-subtitle {
+    margin-top: 8px;
+    color: #555;
+}
+
+.calendar-day-list { 
+    display: grid;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.calendar-day-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+}
+
+.calendar-day-header h3 {
+    margin: 0;
+}
+
+.calendar-day-header span {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.calendar-booking-list {
+    display: grid;
+    gap: 14px;
+}
+
+.calendar-booking-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    padding: 14px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.calendar-time {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #222;
+}
+
+.calendar-time span {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.calendar-details {
+    display: grid;
+    gap: 6px;
+}
+
+.calendar-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.calendar-title-row h4 {
+    margin: 0;
+}
+
+.booking-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.badge-class {
+    background: #111;
+    color: white;
+}
+
+.badge-session {
+    background: #e10600;
+    color: white
+}
+
+@media (max-width: 768px) {
+    .calendar-booking-item {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
