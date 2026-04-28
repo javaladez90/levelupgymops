@@ -4,11 +4,9 @@ const cors = require("cors");
 require("dotenv").config();
 
 const bookingRoutes = require("./routes/bookingRoutes");
+const trainerRoutes = require("./routes/trainerRoutes");
 
 const app = express();
-
-// Middleware
-
 
 app.use(
   cors({
@@ -17,26 +15,32 @@ app.use(
     allowedHeaders: ["Content-Type"],
   })
 );
+
 app.use(express.json());
 
-// Routes
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/trainers", trainerRoutes);
 
-// Simple health check route
 app.get("/", (req, res) => {
-  res.send("Level Up Fitness API is running.");
+  res.send("GymOps API is running.");
 });
 
-// Database connection and server start
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
+async function startServer() {
+  try {
+    if (!process.env.MONGODB_URI) {
+      throw new Error("Missing MONGODB_URI in .env");
+    }
+
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("Connected to MongoDB");
 
-    app.listen(process.env.PORT || 5000, () => {
-      console.log(`Server running on port ${process.env.PORT || 5000}`);
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
-  })
-  .catch((error) => {
-    console.error("MongoDB connection failed:", error);
-  });
+  } catch (error) {
+    console.error("Failed to start server:", error.message);
+  }
+}
+
+startServer();
